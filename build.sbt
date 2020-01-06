@@ -28,12 +28,14 @@ developers in ThisBuild := List(
 val youiVersion = "0.12.9"
 val scalaTestVersion = "3.1.0-SNAP13"
 
-lazy val root = project.in(file("."))
+lazy val root = project.in(file(".")).dependsOn(scarangoLibrary)
   .aggregate(api, coreJS, coreJVM, driver)
   .settings(
     publish := {},
     publishLocal := {}
   )
+lazy val scarangoLibrary = ProjectRef(uri("https://github.com/autonomous-technology/scarango.git"),"scarango")
+
 
 lazy val api = project.in(file("api"))
   .settings(
